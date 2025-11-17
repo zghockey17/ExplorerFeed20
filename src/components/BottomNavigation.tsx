@@ -3,9 +3,10 @@ import { cn } from '../lib/utils';
 
 interface BottomNavigationProps {
   activeTab: 'home' | 'shop' | 'explore' | 'favorites' | 'sell' | 'account';
+  onNavigate: (tab: 'home' | 'shop' | 'explore' | 'favorites' | 'sell' | 'account') => void;
 }
 
-export function BottomNavigation({ activeTab }: BottomNavigationProps) {
+export function BottomNavigation({ activeTab, onNavigate }: BottomNavigationProps) {
   const tabs = [
     { id: 'home', label: 'Home', icon: Home },
     { id: 'shop', label: 'Shop', icon: Search },
@@ -21,6 +22,7 @@ export function BottomNavigation({ activeTab }: BottomNavigationProps) {
         {tabs.map(({ id, label, icon: Icon }) => (
           <button
             key={id}
+            onClick={() => onNavigate(id)}
             className={cn(
               "flex flex-col items-center gap-1 px-3 py-2 rounded-lg transition-colors min-w-[60px]",
               activeTab === id
@@ -29,7 +31,7 @@ export function BottomNavigation({ activeTab }: BottomNavigationProps) {
             )}
           >
             <Icon className="w-5 h-5" />
-            <span className="text-[14px]">{label}</span>
+            <span className="text-[10px]">{label}</span>
           </button>
         ))}
       </div>

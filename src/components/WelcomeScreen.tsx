@@ -1,6 +1,6 @@
-import { ImageWithFallback } from './figma/ImageWithFallback';
 import { Button } from './ui/button';
-import welcomeImage from 'figma:asset/9c4c1e09c00774578df9f1d5d2cc6d9bec001596.png';
+import { ImageWithFallback } from './figma/ImageWithFallback';
+import welcomeHero from 'figma:asset/5dc9ebc7c286596372507a44b34c15b33257f477.png';
 
 interface WelcomeScreenProps {
   onContinue: () => void;
@@ -8,72 +8,55 @@ interface WelcomeScreenProps {
 
 export function WelcomeScreen({ onContinue }: WelcomeScreenProps) {
   return (
-    <div className="min-h-screen bg-carmax-navy flex flex-col">
+    <div className="h-screen bg-carmax-navy flex flex-col">
       {/* Status Bar */}
-      <div className="flex items-center justify-between px-4 pt-3 pb-2">
-        <div className="flex items-center gap-1 text-white/90">
-          <span className="text-sm">◀ App Store</span>
-        </div>
-        <div className="flex items-center gap-2 text-white/90">
-          <span className="text-sm">9:13</span>
-          <span className="text-sm">🌙</span>
-        </div>
-        <div className="flex items-center gap-1">
-          <span className="text-white/90">📶</span>
-          <span className="text-white/90">📡</span>
-          <span className="text-white/90">🔋</span>
+      <div className="flex items-center justify-between px-4 pt-2 pb-1">
+        <span className="text-white text-xs">9:13</span>
+        <div className="flex items-center gap-2 text-white text-xs">
+          <span>📶 📡 🔋</span>
         </div>
       </div>
 
       {/* Hero Image */}
-      <div className="flex-shrink-0">
-        <ImageWithFallback 
-          src={welcomeImage} 
-          alt="CarMax store with customers" 
-          className="w-full h-auto"
+      <div className="w-full h-48 flex-shrink-0 overflow-hidden">
+        <img 
+          src={welcomeHero}
+          alt="CarMax - Wanna Drive?" 
+          className="w-full h-full object-cover"
         />
       </div>
 
       {/* Content */}
-      <div className="flex-1 flex flex-col px-5 pt-8 pb-6">
+      <div className="flex-1 px-5 pt-16 pb-6 flex flex-col">
         <h1 className="text-white mb-3">Welcome to the CarMax App</h1>
-        <p className="text-white/80 mb-8">
+        <p className="text-white/80 text-sm mb-8">
           Sign-in to customize your search, reserve a car or make a payment.
         </p>
 
-        {/* CTA Buttons */}
-        <div className="space-y-4 mb-auto">
-          <Button 
-            className="w-full bg-carmax-yellow text-carmax-navy hover:bg-carmax-yellow/90 h-14 rounded-md"
-          >
+        <div className="space-y-3 mb-8">
+          <Button className="w-full bg-carmax-yellow text-carmax-navy hover:bg-carmax-yellow/90 h-12 rounded-md">
             SIGN IN
           </Button>
           
-          <Button 
-            variant="outline" 
-            className="w-full border-2 border-white text-white hover:bg-white/10 h-14 rounded-md"
-          >
+          <Button variant="outline" className="w-full border-2 border-white text-white hover:bg-white/10 h-12 rounded-md">
             CREATE ACCOUNT
           </Button>
 
           <button 
             onClick={onContinue}
-            className="w-full text-carmax-cyan hover:text-carmax-cyan/80 h-14"
+            className="w-full text-carmax-cyan hover:text-carmax-cyan/80 h-12 text-sm"
           >
             CONTINUE AS GUEST
           </button>
         </div>
 
-        {/* Footer */}
-        <div className="mt-8 text-xs text-white/60 leading-relaxed">
-          By using the CarMax App, you consent to the monitoring and storing of your current and future interactions with the App, including with a CarMax vendor, for use in improving and personalizing our services. We will never sell your information. See our{' '}
-          <span className="text-carmax-cyan">Privacy Policy</span> for details.
+        <div className="mt-auto text-xs text-white/50 leading-relaxed mb-4">
+          By using the CarMax App, you consent to our <span className="text-carmax-cyan">Privacy Policy</span>.
         </div>
-      </div>
 
-      {/* Home Indicator */}
-      <div className="flex justify-center pb-2">
-        <div className="w-32 h-1 bg-white/30 rounded-full"></div>
+        <div className="flex justify-center">
+          <div className="w-32 h-1 bg-white/30 rounded-full"></div>
+        </div>
       </div>
     </div>
   );
