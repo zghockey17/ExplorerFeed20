@@ -29,7 +29,7 @@ export function BottomNavigation({ activeTab }: BottomNavigationProps) {
             )}
           >
             <Icon className="w-5 h-5" />
-            <span className="text-[10px]">{label}</span>
+            <span className="text-[14px]">{label}</span>
           </button>
         ))}
       </div>
