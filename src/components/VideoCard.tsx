@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Heart, Share2, Info, X } from 'lucide-react';
 import { Button } from './ui/button';
 import { Badge } from './ui/badge';
@@ -15,6 +15,7 @@ interface VideoCardProps {
 export function VideoCard({ video, isActive, onSkip }: VideoCardProps) {
   const [isSaved, setIsSaved] = useState(false);
   const [watchProgress, setWatchProgress] = useState(0);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   // Simulate video progress
   useEffect(() => {
@@ -33,10 +34,46 @@ export function VideoCard({ video, isActive, onSkip }: VideoCardProps) {
     }
   }, [isActive]);
 
+  // Control background video playback
+  useEffect(() => {
+    if (!video.videoUrl) return;
+    const element = videoRef.current;
+    if (!element) return;
+
+    if (isActive) {
+      element.currentTime = 0;
+      element.play().catch(() => {
+        /* ignore autoplay restrictions */
+      });
+    } else {
+      element.pause();
+      element.currentTime = 0;
+    }
+
+    return () => {
+      element.pause();
+    };
+  }, [isActive, video.videoUrl]);
+
   return (
     <div className="relative h-screen w-full flex-shrink-0">
       {/* Video Background - Real Image */}
-      {video.imageUrl ? (
+      {video.videoUrl ? (
+        <div className="absolute inset-0">
+          <video
+            ref={videoRef}
+            className="w-full h-full object-cover"
+            src={video.videoUrl}
+            poster={video.posterUrl}
+            muted
+            loop
+            playsInline
+            autoPlay={isActive}
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-black/40" />
+          <div className="absolute inset-0 bg-gradient-to-br from-purple-600/30 via-transparent to-blue-600/30 mix-blend-overlay" />
+        </div>
+      ) : video.imageUrl ? (
         <div className="absolute inset-0">
           <ImageWithFallback
             src={video.imageUrl}
