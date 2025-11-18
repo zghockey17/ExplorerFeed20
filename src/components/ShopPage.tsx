@@ -1,15 +1,25 @@
 import { Search, Bookmark } from 'lucide-react';
 import { Button } from './ui/button';
+import { 
+  ConvertibleIcon, 
+  CoupeIcon, 
+  HatchbackIcon, 
+  LuxuryIcon, 
+  MinivanIcon, 
+  PickupIcon, 
+  SedanIcon, 
+  SUVIcon 
+} from './icons/VehicleIcons';
 
 const vehicleTypes = [
-  { name: 'Convertibles', icon: '🚗' },
-  { name: 'Coupes', icon: '🚗' },
-  { name: 'Hatchbacks', icon: '🚗' },
-  { name: 'Luxury Vehicles', icon: '🚗' },
-  { name: 'Minivans', icon: '🚙' },
-  { name: 'Pickup Trucks', icon: '🛻' },
-  { name: 'Sedans', icon: '🚗' },
-  { name: 'SUVs', icon: '🚙' },
+  { name: 'Convertibles', IconComponent: ConvertibleIcon },
+  { name: 'Coupes', IconComponent: CoupeIcon },
+  { name: 'Hatchbacks', IconComponent: HatchbackIcon },
+  { name: 'Luxury Vehicles', IconComponent: LuxuryIcon },
+  { name: 'Minivans', IconComponent: MinivanIcon },
+  { name: 'Pickup Trucks', IconComponent: PickupIcon },
+  { name: 'Sedans', IconComponent: SedanIcon },
+  { name: 'SUVs', IconComponent: SUVIcon },
 ];
 
 export function ShopPage() {
@@ -40,7 +50,7 @@ export function ShopPage() {
               key={type.name}
               className="bg-carmax-blue border border-white/20 rounded-lg p-6 flex flex-col items-center justify-center gap-3 hover:border-carmax-cyan/50 transition-colors aspect-square"
             >
-              <div className="text-5xl">{type.icon}</div>
+              <type.IconComponent className="w-20 h-20" />
               <span className="text-white text-center">{type.name}</span>
             </button>
           ))}

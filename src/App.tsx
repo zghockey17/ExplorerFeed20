@@ -12,7 +12,7 @@ export default function App() {
   const [currentScreen, setCurrentScreen] = useState<Screen>('welcome');
 
   if (currentScreen === 'welcome') {
-    return <WelcomeScreen onContinue={() => setCurrentScreen('home')} />;
+    return <WelcomeScreen onContinue={() => setCurrentScreen('explore')} />;
   }
 
   return (
