@@ -19,7 +19,7 @@ export interface VideoData {
 
 export const videoData: VideoData[] = [
   {
-    id: 'ai-1',
+    id: 'ai-truck',
     type: 'ai',
     title: 'Overland Escape Concepts',
     subtitle: '✨ AI-Generated Inspiration',
@@ -30,7 +30,7 @@ export const videoData: VideoData[] = [
       'https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=1080&q=80',
   },
   {
-    id: 'ai-2',
+    id: 'ai-suv',
     type: 'ai',
     title: 'Coastal Rally Energy',
     subtitle: '✨ AI-Generated Inspiration',
@@ -41,7 +41,7 @@ export const videoData: VideoData[] = [
       'https://images.unsplash.com/photo-1502877338535-766e1452684a?auto=format&fit=crop&w=1080&q=80',
   },
   {
-    id: 'ai-3',
+    id: 'ai-sedan',
     type: 'ai',
     title: 'Neon Night Cruisers',
     subtitle: '✨ AI-Generated Inspiration',

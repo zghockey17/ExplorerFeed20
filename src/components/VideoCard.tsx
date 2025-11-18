@@ -131,30 +131,19 @@ export function VideoCard({ video, isActive, onSkip }: VideoCardProps) {
         </div>
       )}
 
-      {/* Skip Button for AI videos */}
-      {video.type === 'ai' && onSkip && (
-        <button
-          onClick={onSkip}
-          className="absolute top-28 right-4 z-40 text-white/80 hover:text-white flex items-center gap-1 text-sm"
-        >
-          <span>Skip to cars</span>
-          <X className="w-4 h-4" />
-        </button>
-      )}
-
       {/* Video Information Overlay */}
       <div className="absolute bottom-20 left-0 right-0 z-40 px-4 pb-6 bg-gradient-to-t from-black/90 via-black/60 to-transparent pt-24">
         <div className="space-y-3">
           {/* Car Title */}
           <div>
             <h3 className="text-white text-xl">{video.title}</h3>
-            {video.subtitle && (
+            {video.subtitle && video.type === 'vin' && (
               <p className="text-white/80">{video.subtitle}</p>
             )}
           </div>
 
-          {/* Details */}
-          {video.details && (
+          {/* Details - Only show for VIN videos */}
+          {video.type === 'vin' && video.details && (
             <div className="flex flex-wrap gap-2">
               {video.details.map((detail, index) => (
                 <Badge key={index} variant="secondary" className="bg-white/20 text-white border-0">
@@ -164,8 +153,8 @@ export function VideoCard({ video, isActive, onSkip }: VideoCardProps) {
             </div>
           )}
 
-          {/* Price */}
-          {video.price && (
+          {/* Price - Only show for VIN videos */}
+          {video.type === 'vin' && video.price && (
             <div className="text-white">
               <span className="text-2xl">{video.price}</span>
               {video.priceDetails && (
@@ -174,27 +163,27 @@ export function VideoCard({ video, isActive, onSkip }: VideoCardProps) {
             </div>
           )}
 
-          {/* Description */}
-          {video.description && (
+          {/* Description - Only show for VIN videos */}
+          {video.type === 'vin' && video.description && (
             <p className="text-white/80 text-sm line-clamp-2">{video.description}</p>
           )}
 
-          {/* CTA Buttons */}
-          <div className="flex gap-3 pt-2">
-            <Button 
-              className="flex-1 bg-carmax-yellow text-carmax-navy hover:bg-carmax-yellow/90 h-12"
-            >
-              {video.type === 'ai' ? 'Find Similar Cars' : 'View Details'}
-            </Button>
-            {video.type === 'vin' && (
+          {/* CTA Buttons - Only show for VIN videos */}
+          {video.type === 'vin' && (
+            <div className="flex gap-3 pt-2">
+              <Button 
+                className="flex-1 bg-carmax-yellow text-carmax-navy hover:bg-carmax-yellow/90 h-12"
+              >
+                View Details
+              </Button>
               <Button 
                 variant="outline" 
                 className="flex-1 border-white text-white hover:bg-white/10 h-12"
               >
                 Hold Car
               </Button>
-            )}
-          </div>
+            </div>
+          )}
         </div>
       </div>
 

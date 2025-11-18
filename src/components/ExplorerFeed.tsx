@@ -73,16 +73,7 @@ export function ExplorerFeed() {
     }
   }, [currentIndex, isTransitioning]);
 
-  // Auto-show skip modal after 3 AI videos
-  useEffect(() => {
-    const currentVideo = videoData[currentIndex];
-    if (currentVideo.type === 'ai' && currentIndex >= 2) {
-      const timer = setTimeout(() => {
-        setShowSkipModal(true);
-      }, 5000);
-      return () => clearTimeout(timer);
-    }
-  }, [currentIndex]);
+  // Removed auto-show skip modal - not needed for lifestyle-only feed
 
   const handleSkipToVIN = () => {
     const nextVINIndex = videoData.findIndex((v, i) => i > currentIndex && v.type === 'vin');
