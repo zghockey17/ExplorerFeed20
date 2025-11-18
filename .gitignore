@@ -1,0 +1,28 @@
+# Node modules & locks
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+yarn.lock
+
+# Vite / React outputs
+dist/
+build/
+.vite/
+vite.config.ts.timestamp-*
+
+# Logs & diagnostics
+npm-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+*.log
+
+# Editor / OS cruft
+.DS_Store
+.idea/
+.vscode/
+*.swp
+
+# Env & tooling
+.env*
+!.env.example
+firebase-debug.log
